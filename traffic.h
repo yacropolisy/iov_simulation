@@ -1,6 +1,7 @@
 #ifndef INCLUDED_traffic_h
 #define INCLUDED_traffic_h
 
+#include <vector>
 #include "const.h"
 
 using namespace std;
