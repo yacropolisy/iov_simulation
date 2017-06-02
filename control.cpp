@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <fstream>
 
 #include "control.h"
 #include "const.h"
@@ -79,5 +80,5 @@ void control(vector<trafficv> copytra, int qc[],int bc[],int bv[],vector<int> nj
   }
   fout<<endl;
   //recorded
-  fout.close()
+  fout.close();
 }
