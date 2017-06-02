@@ -38,7 +38,7 @@ void readlog(cood usercood[],int startid,int N,int t){
     }
     stio.str(ss);
     stio >>x >>x >>y; //ファイル中、1行目はtimeなので捨てる
-    usercood[i].x=stod(x)+1500;
+    usercood[i].x=stod(x)+2500;
     usercood[i].y=stod(y)+1000;
     fin.close();
   }
