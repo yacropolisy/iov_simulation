@@ -50,7 +50,7 @@ double youtube(double x){
 int maketrafficlength(){
   while(1){
     int a;
-    a=1+rand()%(3000);  //1~3000秒のトラヒック発生
+    a=1+rand()%(3000-1);  //1~3000秒のトラヒック発生
 
     double b;
     b=0.0035*Uniform(1.0);
