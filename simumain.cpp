@@ -22,15 +22,19 @@ int main(){
   vector<trafficv> trav;
   inittrav(&trav);
 
+
   //基地局の配置 =>cell.cpp
   cood cell[M];
   initcell(cell);
   vector<int> nj[M];
   setnj(nj);
 
+
   //ログデータ読み込み、ユーザの位置入手用
   cood uc[Nc],uv[Nv];
   int bc[Nc],bv[Nv];
+
+
 
   //混雑度
   int Dc[M],D[M];
@@ -42,15 +46,17 @@ int main(){
       for(j=0;j<M;j++){
         Dc[j]=0;
       }
+
       //logデータ読み込んでユーザの位置を入手 =>cell.cpp
       readlog(uc,0,Nc,t);
       readlog(uv,Nc,Nv,t);
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
       //制御
-      control(trav, &qc[t][Nc],bc,bv,nj,t,waittime);
+      control(trav, &qc[t][0],bc,bv,nj,t,waittime);
     }
   }
+
 
   return 0;
 }
