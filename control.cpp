@@ -29,10 +29,10 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int waittime)
     }
   }
 
-void control(vector<trafficv> copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime){
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
-  int Dc[M];
+  int Dc[M]={0};
   int D[M];
   ofstream fout;
   string outfile;
@@ -63,13 +63,11 @@ void control(vector<trafficv> copytra, int qc[],int bc[],int bv[],vector<int> nj
     for(k=0;k<Kv;k++){
       if(t>=copytra[k].starttime2&&copytra[k].datasize>0&&bv[copytra[k].userid]==j){
         copytra[k].datasize -= 1.0/D[j];
+        copytra[k].starttime2++;
       }
     }
   }
-  //vehicleの計算処理
-  for(k=0;k<Kv;k++){
-    copytra[k].starttime2++;
-  }
+
   //制御判定
   if(waittime!=0){
     f(copytra,D,bv,nj,waittime);
