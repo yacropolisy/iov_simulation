@@ -11,6 +11,7 @@
 #include "traffic.h"
 #include "control.h"
 #include "const.h"
+#include "eval.h"
 
 using namespace std;
 int main(){
@@ -18,6 +19,8 @@ int main(){
   int waittime;
   double alpha=1.0/60;
   int dave[M][Tave]={0};
+  ofstream fout;
+  string filename;
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
   vector<trafficc> trac;
@@ -39,6 +42,8 @@ int main(){
 
   //待機時間変えて結果取得
   for(waittime=0;waittime<60;waittime+=30){
+    filename = "stop_w:"+to_string(waittime)+".csv";
+    fout.open(filename);
     //waittimeでループするためのtravのバックップ
     vector<trafficv> copytra;
     copytra=trav;
@@ -51,8 +56,10 @@ int main(){
       setcell(cell,uv,bv,Nv);
       //制御
       control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha, dave);
+      fout << eval(trac,dave,bc,t) << ",";
     }
+    fout << endl;
+    fout.close();
   }
-
   return 0;
 }

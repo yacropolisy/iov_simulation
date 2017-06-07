@@ -1,28 +1,30 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <cmath>
 #include <string>
-#include <deque>
 
 #include "eval.h"
 #include "traffic.h"
+#include "const.h"
 
 using namespace std;
 
-void eval(vector<trafficc> &trac, deque<int> &dave,int bc[], int now){
-  int k,j,sum,t,stopcount;
+int eval(vector<trafficc> &trac, int dave[][Tave],int bc[], int now){
+  int k,sum,t,stopcount=0,count;
   for(k=0; k<trac.size(); k++){
     sum = 0;
+    count = 0;
     if(trac[k].starttime >= now || trac[k].endtime < now){
-      break;
+      continue;
     }
-    for(t = 9; t >= 0; t--){
-      if(trac[k].starttime <= now - t){
-        dave[1];
-        sum += dave[bc[trac[k].userid]][t];
+    for(t = now - 9; t <= now; t++){
+      if(trac[k].starttime <= t){
+        sum += dave[bc[trac[k].userid]][t%Tave];
+        count++;
+      }
     }
-
+    if(dave[bc[trac[k].userid]][now%Tave] > sum/double(count)*Stoprate){
+      stopcount++;
     }
   }
+  return stopcount;
 }
