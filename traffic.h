@@ -30,5 +30,6 @@ public:
 
 void initqc(int qc[][Nc]);
 void inittrav(vector<trafficv> *trav);
+double Uniform( double max );
 
 #endif
