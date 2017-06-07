@@ -42,7 +42,7 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int t,int wai
     }
   }
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha, deque<int> dave[]){
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha, int dave[][Tave]){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
   int Dc[M]={0};
@@ -88,10 +88,7 @@ void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> n
 
   //dave更新
   for(j=0; j<M; j++){
-    if(dave[j].size()==10){
-      dave[j].pop_back();
-    }
-    dave[j].push_front(D[j]);
+    dave[j][t%Tave]=D[j];
   }
 
   //record

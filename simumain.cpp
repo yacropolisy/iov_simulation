@@ -14,10 +14,10 @@
 
 using namespace std;
 int main(){
-  int i,j,t,k;
+  int t;
   int waittime;
-  double alpha;
-  deque<int> dave[M];
+  double alpha=1.0/60;
+  int dave[M][Tave]={0};
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
   vector<trafficc> trac;

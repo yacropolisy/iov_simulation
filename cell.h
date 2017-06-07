@@ -1,6 +1,8 @@
 #ifndef INCLUDED_cell_h
 #define INCLUDED_cell_h
 
+#include <vector>
+
 using namespace std;
 struct cood{
   double x;
