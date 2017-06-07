@@ -29,7 +29,7 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int waittime)
     }
   }
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime){
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
   int Dc[M]={0};
