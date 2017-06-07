@@ -20,8 +20,10 @@ int main(){
   deque<int> dave[M];
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
+  vector<trafficc> trac;
+  inittrac(&trac);
   int qc[T][Nc]={0};
-  initqc(qc);
+  initqc(qc, trac);
   vector<trafficv> trav;
   inittrav(&trav);
 
@@ -49,12 +51,6 @@ int main(){
       setcell(cell,uv,bv,Nv);
       //制御
       control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha, dave);
-      for(j=0; j<M; j++){
-        for(k=0;k<10;k++){
-          cout << dave[j][k] << ",";
-        }
-        cout << endl;
-      }
     }
   }
 

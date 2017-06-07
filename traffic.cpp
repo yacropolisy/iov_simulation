@@ -63,8 +63,18 @@ int maketrafficlength(){
   }
 }
 
-void initqc(int qc[][Nc]){
-  vector<trafficc> trac;
+void initqc(int qc[][Nc], vector<trafficc> &trac){
+  int t;
+  for(int k=0;k<trac.size();k++){
+    for(t=trac[k].starttime;t<trac[k].endtime;t++){
+      if(t<T){
+        qc[t][trac[k].userid]=1;
+      }
+    }
+  }
+}
+
+void inittrac(vector<trafficc> *trac){
   trafficc tmptra;
   int t;
   for(int i=0;i<Nc;i++){
@@ -77,14 +87,7 @@ void initqc(int qc[][Nc]){
       tmptra.starttime=t;
       tmptra.userid=i;
       tmptra.endtime=t+maketrafficlength();
-      trac.push_back(tmptra);
-    }
-  }
-  for(int k=0;k<trac.size();k++){
-    for(t=trac[k].starttime;t<trac[k].endtime;t++){
-      if(t<T){
-        qc[t][trac[k].userid]=1;
-      }
+      trac->push_back(tmptra);
     }
   }
 }

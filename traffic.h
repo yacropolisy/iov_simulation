@@ -28,7 +28,8 @@ public:
   void wait(int waittime);
 };
 
-void initqc(int qc[][Nc]);
+void inittrac(vector<trafficc> *trac);
+void initqc(int qc[][Nc], vector<trafficc> &trac);
 void inittrav(vector<trafficv> *trav);
 double Uniform( double max );
 
