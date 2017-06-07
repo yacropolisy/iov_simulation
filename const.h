@@ -8,5 +8,6 @@
 #define Lambda 0.05
 #define Interval 30
 #define Datasize 0.1
+#define U0 1.0
 
 #endif

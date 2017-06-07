@@ -15,6 +15,7 @@ using namespace std;
 int main(){
   int i,j,t,k,l,L,Kv;
   int waittime;
+  double al=0.1;
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
   int qc[T][Nc]={0};
@@ -45,7 +46,7 @@ int main(){
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
       //制御
-      control(copytra, &qc[t][0],bc,bv,nj,t,waittime);
+      control(copytra, &qc[t][0],bc,bv,nj,t,waittime,al);
     }
   }
 

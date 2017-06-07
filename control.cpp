@@ -8,8 +8,21 @@
 
 using namespace std;
 
+//一様乱数生成
+double Uniform( double max ){
+  return max*(double)rand()/((double)RAND_MAX+1.0);
+}
+
+//反応率計算
+double calpr(double D, double data, int starttime, int t, int waittime, double Alpha){
+  double a,b;
+  a=exp(U0*exp(-Alpha*(int(D*data)+waittime-starttime)));
+  b=exp(U0*exp(-Alpha*(int(D*data)-starttime)));
+  return a/(a+b);
+}
+
 //制御関数f
-void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int waittime){
+void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int t,int waittime, double Alpha){
   double f;
   int i,j,k;
     for(j=0;j<M;j++){
@@ -22,14 +35,16 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int waittime)
       if(f/nj[j].size()*1.5<D[j]&&(D[j]-f/nj[j].size())>=10){ //周囲の混雑度より1.5倍かつ１０以上多いなら制御実行
         for(k=0;k<copytra.size();k++){
           if(bv[copytra[k].userid]==j){
-            copytra[k].wait(waittime);
+            if(Uniform(1.0)<calpr(D[j], copytra[k].datasize, copytra[k].starttime, t, waittime, Alpha)){
+              copytra[k].wait(waittime);
+            }
           }
         }
       }
     }
   }
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime){
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double Alpha){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
   int Dc[M]={0};
@@ -70,7 +85,7 @@ void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> n
 
   //制御判定
   if(waittime!=0){
-    f(copytra,D,bv,nj,waittime);
+    f(copytra,D,bv,nj,t,waittime,Alpha);
   }
   //record
   for(j=0;j<M;j++){
