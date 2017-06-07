@@ -5,5 +5,6 @@
 #include "traffic.h"
 using namespace std;
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double Alpha);
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime);
+
 #endif
