@@ -10,4 +10,5 @@
 #define Datasize 0.1  //user数:500,500 Lamda:0.01 Interval:30の時0.1くらいでトラヒックはサチらない
 #define U0 1  //1の時が程よく反応率が数１０％になる
 
+
 #endif

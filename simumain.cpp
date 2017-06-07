@@ -5,6 +5,7 @@
 #include <ctime>
 #include <string>
 #include <sstream>
+#include <deque>
 
 #include "cell.h"
 #include "traffic.h"
@@ -13,9 +14,10 @@
 
 using namespace std;
 int main(){
-  int i,j,t,k,l,L,Kv;
+  int i,j,t,k;
   int waittime;
   double alpha;
+  deque<int> dave[M];
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
   int qc[T][Nc]={0};
@@ -34,7 +36,7 @@ int main(){
   int bc[Nc],bv[Nv];
 
   //待機時間変えて結果取得
-  for(waittime=0;waittime<300;waittime+=30){
+  for(waittime=0;waittime<60;waittime+=30){
     //waittimeでループするためのtravのバックップ
     vector<trafficv> copytra;
     copytra=trav;
@@ -46,7 +48,13 @@ int main(){
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
       //制御
-      control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha);
+      control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha, dave);
+      for(j=0; j<M; j++){
+        for(k=0;k<10;k++){
+          cout << dave[j][k] << ",";
+        }
+        cout << endl;
+      }
     }
   }
 

@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <fstream>
+#include <deque>
 
 #include "control.h"
 #include "const.h"
@@ -41,7 +42,7 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int t,int wai
     }
   }
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha){
+void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha, deque<int> dave[]){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
   int Dc[M]={0};
@@ -84,6 +85,15 @@ void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> n
   if(waittime!=0){
     f(copytra,D,bv,nj,t,waittime,alpha);
   }
+
+  //dave更新
+  for(j=0; j<M; j++){
+    if(dave[j].size()==10){
+      dave[j].pop_back();
+    }
+    dave[j].push_front(D[j]);
+  }
+
   //record
   for(j=0;j<M;j++){
     fout<<D[j]<<",";
