@@ -6,5 +6,5 @@
 using namespace std;
 
 
-int eval(vector<trafficc> &trac, int dave[][Tave],int bc[], int now);
+int eval(vector<trafficc> &trac, int dave[][Tave],int bcave[][Tave], int now);
 #endif

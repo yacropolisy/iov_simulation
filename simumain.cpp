@@ -15,10 +15,11 @@
 
 using namespace std;
 int main(){
-  int t;
+  int t,i,j;
   int waittime;
   double alpha=1.0/60;
-  int dave[M][Tave]={0};
+  int dave[M][Tave];
+  int bcave[Nc][Tave];
   ofstream fout;
   string filename;
 
@@ -47,6 +48,15 @@ int main(){
     //waittimeでループするためのtravのバックップ
     vector<trafficv> copytra;
     copytra=trav;
+    //dave,bcave初期化
+    for(t=0; t<Tave; t++){
+      for(j=0;j<M ;j++){
+        dave[j][t]=0;
+      }
+      for(i=0; i<Nc; i++){
+        bcave[i][t]=-1;
+      }
+    }
     //制御時刻開始
     for(t=0;t<T;t++){
       //logデータ読み込んでユーザの位置を入手 =>cell.cpp
@@ -54,9 +64,12 @@ int main(){
       readlog(uv,Nc,Nv,t);
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
+      for(i=0; i<Nc; i++){
+        bcave[i][t%Tave]=bc[i];
+      }
       //制御
       control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha, dave);
-      fout << eval(trac,dave,bc,t) << ",";
+      fout << eval(trac,dave,bcave,t) << ",";
     }
     fout << endl;
     fout.close();
