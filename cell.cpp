@@ -23,12 +23,12 @@ void initcell(cood cell[]){
 }
 
 //時刻ｔにおけるタクシーログデータの取り込み
-void readlog(cood usercood[],int startid,int N,int t){
+void readlog(cood usercood[],int startid,int N, int h, int t){
   ifstream fin;
   string filename,ss,x,y;
   stringstream stio;
   for(int i=0;i<N;i++){
-    filename="formatedID"+to_string(i+startid)+".txt";
+    filename="formatedID"+to_string(i+startid)+"_"+to_string(h)+".txt";
     fin.open(filename);
     if(!fin){
       cout<<"open error"<<endl;
@@ -37,7 +37,7 @@ void readlog(cood usercood[],int startid,int N,int t){
       getline(fin,ss);
     }
     stio.str(ss);
-    stio >>x >>x >>y; //ファイル中、1行目はtimeなので捨てる
+    stio >>x >>x >>y; //ファイル中、1列目はtimeなので捨てる
     usercood[i].x=stod(x)+2500;
     usercood[i].y=stod(y)+1000;
     fin.close();

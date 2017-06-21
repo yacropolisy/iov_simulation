@@ -16,6 +16,7 @@
 using namespace std;
 int main(){
   int t,i,j;
+  int h = H;
   int waittime;
   double alpha=1.0/60;
   int dave[M][Tave];
@@ -60,8 +61,8 @@ int main(){
     //制御時刻開始
     for(t=0;t<T;t++){
       //logデータ読み込んでユーザの位置を入手 =>cell.cpp
-      readlog(uc,0,Nc,t);
-      readlog(uv,Nc,Nv,t);
+      readlog(uc,0,Nc,h,t);
+      readlog(uv,Nc,Nv,h,t);
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
       for(i=0; i<Nc; i++){

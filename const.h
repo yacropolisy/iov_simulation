@@ -11,5 +11,6 @@
 #define U0 1  //1の時が程よく反応率が数１０％になる
 #define Tave 10  //通信のスループットで移動平均取る時間
 #define Stoprate 1.2 //通信端末数がこれ以上増えたら停止
+#define H 10  //taxiデータの読み込み開始時刻
 
 #endif

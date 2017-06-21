@@ -9,7 +9,7 @@ struct cood{
   double y;
 };
 void initcell(cood cell[]);
-void readlog(cood usercood[],int startid,int N,int t);
+void readlog(cood usercood[],int startid,int N, int h, int t);
 void setcell(cood cell[],cood user[],int b[],int N);
 void setnj(vector<int> nj[]);
 
