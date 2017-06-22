@@ -10,6 +10,11 @@
 
 using namespace std;
 
+/*一様乱数生成*/
+double Uniform( double max ){
+  return max*(double)rand()/((double)RAND_MAX+1.0);
+}
+
 //反応率計算
 double calpr(int D, double datasize, int st, int t, int waittime, double alpha){
   double a,b;
@@ -41,10 +46,9 @@ void f(vector<trafficv> &copytra,int D[],int bv[],vector<int> nj[],int t,int wai
     }
   }
 
-void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> nj[],int t,int waittime,double alpha, int dave[][Tave]){
+void control(vector<trafficv> &copytra,int bv[],vector<int> nj[],int t,int waittime,double alpha, int dave[][Tave]){
   int i,j,k,l,L,Kv;
   Kv=copytra.size();
-  int Dc[M]={0};
   int D[M];
   ofstream fout;
   string outfile;
@@ -52,14 +56,6 @@ void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> n
   outfile="D_wt"+to_string(waittime)+".csv";
   fout.open(outfile,ios::app);
 
-  //Cellerの混雑度計算
-  for(i=0;i<Nc;i++){
-    if(qc[i] == 1){
-      if(bc[i]!= -1){
-        Dc[bc[i]]+=1;
-      }
-    }
-  }
   //Vehicleの通信端末数計算
   for(j=0;j<M;j++){
     l=0;
@@ -70,7 +66,7 @@ void control(vector<trafficv> &copytra, int qc[],int bc[],int bv[],vector<int> n
     }
     //混雑度計算
     L=l;
-    D[j]=Dc[j]+L;
+    D[j]=L;
     //Vehicleの計算処理
     for(k=0;k<Kv;k++){
       if(t>=copytra[k].starttime2&&copytra[k].datasize>0&&bv[copytra[k].userid]==j){

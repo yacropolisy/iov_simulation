@@ -13,12 +13,6 @@ public:
   int userid;
 };
 
-//celler
-class trafficc : public traffic{
-public:
-  int endtime;
-};
-
 //vehicle
 class trafficv : public traffic{
 public:
@@ -29,9 +23,6 @@ public:
   double alpha; //許容遅延、指数減衰モデルにおける減衰係数
 };
 
-void inittrac(vector<trafficc> *trac);
-void initqc(int qc[][Nc], vector<trafficc> &trac);
-void inittrav(vector<trafficv> *trav, int datasize, int interval);
-double Uniform( double max );
+void inittrav(vector<trafficv> *trav, double datasize, int interval);
 
 #endif

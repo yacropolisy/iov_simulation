@@ -11,7 +11,6 @@
 #include "traffic.h"
 #include "control.h"
 #include "const.h"
-#include "eval.h"
 
 using namespace std;
 int main(){
@@ -20,17 +19,12 @@ int main(){
   int waittime;
   double alpha=1.0/60;
   int dave[M][Tave];
-  int bcave[Nc][Tave];
   ofstream fout;
   string filename;
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
-  vector<trafficc> trac;
-  inittrac(&trac);
-  int qc[T][Nc]={0};
-  initqc(qc, trac);
   vector<trafficv> trav;
-  inittrav(&trav);
+  inittrav(&trav, Datasize, Interval);
 
   //基地局の配置 =>cell.cpp
   cood cell[M];
@@ -54,9 +48,6 @@ int main(){
       for(j=0;j<M ;j++){
         dave[j][t]=0;
       }
-      for(i=0; i<Nc; i++){
-        bcave[i][t]=-1;
-      }
     }
     //制御時刻開始
     for(t=0;t<T;t++){
@@ -65,12 +56,8 @@ int main(){
       readlog(uv,Nc,Nv,h,t);
       setcell(cell,uc,bc,Nc);
       setcell(cell,uv,bv,Nv);
-      for(i=0; i<Nc; i++){
-        bcave[i][t%Tave]=bc[i];
-      }
       //制御
-      control(copytra, &qc[t][0],bc,bv,nj,t,waittime,alpha, dave);
-      fout << eval(trac,dave,bcave,t) << ",";
+      control(copytra, bv, nj, t, waittime, alpha, dave);
     }
     fout << endl;
     fout.close();
