@@ -16,7 +16,6 @@ double calpr(int D, double datasize, int st, int t, int waittime, double alpha){
   a=exp(U0*exp(-alpha*(int(D*datasize)+t+waittime-st)));
   b=exp(U0*exp(-alpha*(int(D*datasize)+t-st)));
   return a/(a+b);
-
 }
 
 //制御関数f

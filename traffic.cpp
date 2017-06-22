@@ -92,7 +92,7 @@ void inittrac(vector<trafficc> *trac){
   }
 }
 
-void inittrav(vector<trafficv> *trav){
+void inittrav(vector<trafficv> *trav, int datasize, int interval){
   int t;
   for(int i=0;i<Nv;i++){
     trafficv tmptra;
