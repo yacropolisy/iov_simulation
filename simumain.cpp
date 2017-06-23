@@ -24,7 +24,7 @@ int main(){
 
   //トラヒックの発生、Cellerはqc、Vehicleはtrav  =>traffic.cpp
   vector<trafficv> trav;
-  inittrav(&trav, Datasize, Interval);
+  inittrav(&trav, Datasize, Interval, P);
 
   //基地局の配置 =>cell.cpp
   cood cell[M];

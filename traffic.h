@@ -21,8 +21,9 @@ public:
   int starttime2; //待機した時にこの値を現在時刻＋Waittimeにする
   void wait(int waittime);  //waittimeだけ通信待機
   double alpha; //許容遅延、指数減衰モデルにおける減衰係数
-};
 
-void inittrav(vector<trafficv> *trav, double datasize, int interval);
+};
+double Uniform( double max );
+void inittrav(vector<trafficv> *trav, double datasize, int interval, double p);
 
 #endif

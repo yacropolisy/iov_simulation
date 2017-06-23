@@ -10,10 +10,6 @@
 
 using namespace std;
 
-/*一様乱数生成*/
-double Uniform( double max ){
-  return max*(double)rand()/((double)RAND_MAX+1.0);
-}
 
 //反応率計算
 double calpr(int D, double datasize, int st, int t, int waittime, double alpha){
