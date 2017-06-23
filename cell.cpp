@@ -28,10 +28,10 @@ void readlog(cood usercood[],int startid,int N, int h, int t){
   string filename,ss,x,y;
   stringstream stio;
   for(int i=0;i<N;i++){
-    filename="formatedID"+to_string(i+startid)+"_"+to_string(h)+".txt";
+    filename="splitedID"+to_string(i+startid)+"_"+to_string(h)+".txt";
     fin.open(filename);
     if(!fin){
-      cout<<"open error"<<endl;
+      cout<<"open error:"<< filename <<endl;
     }
     for(int a=0;a<=t;a++){
       getline(fin,ss);

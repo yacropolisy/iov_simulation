@@ -7,5 +7,5 @@
 #include "traffic.h"
 using namespace std;
 
-void control(vector<trafficv> &copytra, int bv[],vector<int> nj[],int t,int waittime,double alpha, int dave[][Tave]);
+void control(vector<trafficv> &copytra1, vector<trafficv> &copytra2, vector<trafficv> &copytra3, int bv[],vector<int> nj[],int t,int waittime, int dave[][Tave]);
 #endif

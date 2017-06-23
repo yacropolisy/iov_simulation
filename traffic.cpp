@@ -21,16 +21,16 @@ void trafficv::wait(int waittime){
 void inittrav(vector<trafficv> *trav, double datasize, int interval, double p){
   int t;
   for(int i=0;i<Nv;i++){
-    if(Uniform(1.0) < p){
+    if(Uniform(1.0) <= p){
       trafficv tmptra;
       t=i%interval;
       while(t<T){
         tmptra.starttime=tmptra.starttime2=t;
         tmptra.userid=i;
         tmptra.flag=0;
-        tmptra.datasize=Datasize;
+        tmptra.datasize=datasize;
         trav->push_back(tmptra);
-        t+=Interval;
+        t+=interval;
       }
     }
   }
